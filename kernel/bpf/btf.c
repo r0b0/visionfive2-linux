@@ -498,11 +498,6 @@ bool btf_type_is_void(const struct btf_type *t)
 	return t == &btf_void;
 }
 
-static bool btf_type_is_fwd(const struct btf_type *t)
-{
-	return BTF_INFO_KIND(t->info) == BTF_KIND_FWD;
-}
-
 static bool btf_type_is_datasec(const struct btf_type *t)
 {
 	return BTF_INFO_KIND(t->info) == BTF_KIND_DATASEC;
@@ -1662,7 +1657,16 @@ static void btf_free_id(struct btf *btf)
 	 * of the _bh() version.
 	 */
 	spin_lock_irqsave(&btf_idr_lock, flags);
-	idr_remove(&btf_idr, btf->id);
+	if (btf->id) {
+		idr_remove(&btf_idr, btf->id);
+		/*
+		 * Clear the id here to make this function idempotent, since it will get
+		 * called a couple of times for module BTFs: on module unload, and then
+		 * the final btf_put(). btf_alloc_id() starts IDs with 1, so we can use
+		 * 0 as sentinel value.
+		 */
+		WRITE_ONCE(btf->id, 0);
+	}
 	spin_unlock_irqrestore(&btf_idr_lock, flags);
 }
 
@@ -6415,6 +6419,103 @@ int btf_ctx_arg_offset(const struct btf *btf, const struct btf_type *func_proto,
 	return off;
 }
 
+struct bpf_raw_tp_null_args {
+	const char *func;
+	u64 mask;
+};
+
+static const struct bpf_raw_tp_null_args raw_tp_null_args[] = {
+	/* sched */
+	{ "sched_pi_setprio", 0x10 },
+	/* ... from sched_numa_pair_template event class */
+	{ "sched_stick_numa", 0x100 },
+	{ "sched_swap_numa", 0x100 },
+	/* afs */
+	{ "afs_make_fs_call", 0x10 },
+	{ "afs_make_fs_calli", 0x10 },
+	{ "afs_make_fs_call1", 0x10 },
+	{ "afs_make_fs_call2", 0x10 },
+	{ "afs_protocol_error", 0x1 },
+	{ "afs_flock_ev", 0x10 },
+	/* cachefiles */
+	{ "cachefiles_lookup", 0x1 | 0x200 },
+	{ "cachefiles_unlink", 0x1 },
+	{ "cachefiles_rename", 0x1 },
+	{ "cachefiles_prep_read", 0x1 },
+	{ "cachefiles_mark_active", 0x1 },
+	{ "cachefiles_mark_failed", 0x1 },
+	{ "cachefiles_mark_inactive", 0x1 },
+	{ "cachefiles_vfs_error", 0x1 },
+	{ "cachefiles_io_error", 0x1 },
+	{ "cachefiles_ondemand_open", 0x1 },
+	{ "cachefiles_ondemand_copen", 0x1 },
+	{ "cachefiles_ondemand_close", 0x1 },
+	{ "cachefiles_ondemand_read", 0x1 },
+	{ "cachefiles_ondemand_cread", 0x1 },
+	{ "cachefiles_ondemand_fd_write", 0x1 },
+	{ "cachefiles_ondemand_fd_release", 0x1 },
+	/* ext4, from ext4__mballoc event class */
+	{ "ext4_mballoc_discard", 0x10 },
+	{ "ext4_mballoc_free", 0x10 },
+	/* fib */
+	{ "fib_table_lookup", 0x100 },
+	/* filelock */
+	/* ... from filelock_lock event class */
+	{ "posix_lock_inode", 0x10 },
+	{ "fcntl_setlk", 0x10 },
+	{ "locks_remove_posix", 0x10 },
+	{ "flock_lock_inode", 0x10 },
+	/* ... from filelock_lease event class */
+	{ "break_lease_noblock", 0x10 },
+	{ "break_lease_block", 0x10 },
+	{ "break_lease_unblock", 0x10 },
+	{ "generic_delete_lease", 0x10 },
+	{ "time_out_leases", 0x10 },
+	/* host1x */
+	{ "host1x_cdma_push_gather", 0x10000 },
+	/* huge_memory */
+	{ "mm_khugepaged_scan_pmd", 0x10 },
+	{ "mm_collapse_huge_page_isolate", 0x1 },
+	{ "mm_khugepaged_scan_file", 0x10 },
+	{ "mm_khugepaged_collapse_file", 0x10 },
+	/* kmem */
+	{ "mm_page_alloc", 0x1 },
+	{ "mm_page_pcpu_drain", 0x1 },
+	/* .. from mm_page event class */
+	{ "mm_page_alloc_zone_locked", 0x1 },
+	/* netfs */
+	{ "netfs_failure", 0x10 },
+	/* power */
+	{ "device_pm_callback_start", 0x10 },
+	/* qdisc */
+	{ "qdisc_dequeue", 0x1000 },
+	/* rxrpc */
+	{ "rxrpc_recvdata", 0x1 },
+	{ "rxrpc_resend", 0x10 },
+	/* skb */
+	{"kfree_skb", 0x1000},
+	/* sunrpc */
+	{ "xs_stream_read_data", 0x1 },
+	/* ... from xprt_cong_event event class */
+	{ "xprt_reserve_cong", 0x10 },
+	{ "xprt_release_cong", 0x10 },
+	{ "xprt_get_cong", 0x10 },
+	{ "xprt_put_cong", 0x10 },
+	/* tcp */
+	{ "tcp_send_reset", 0x11 },
+	/* tegra_apb_dma */
+	{ "tegra_dma_tx_status", 0x100 },
+	/* timer_migration */
+	{ "tmigr_update_events", 0x1 },
+	/* writeback, from writeback_folio_template event class */
+	{ "writeback_dirty_folio", 0x10 },
+	{ "folio_wait_writeback", 0x10 },
+	/* rdma */
+	{ "mr_integ_alloc", 0x2000 },
+	/* bpf_testmod */
+	{ "bpf_testmod_test_read", 0x0 },
+};
+
 bool btf_ctx_access(int off, int size, enum bpf_access_type type,
 		    const struct bpf_prog *prog,
 		    struct bpf_insn_access_aux *info)
@@ -6425,6 +6526,7 @@ bool btf_ctx_access(int off, int size, enum bpf_access_type type,
 	const char *tname = prog->aux->attach_func_name;
 	struct bpf_verifier_log *log = info->log;
 	const struct btf_param *args;
+	bool ptr_err_raw_tp = false;
 	const char *tag_value;
 	u32 nr_args, arg;
 	int i, ret;
@@ -6519,6 +6621,12 @@ bool btf_ctx_access(int off, int size, enum bpf_access_type type,
 		return false;
 	}
 
+	if (size != sizeof(u64)) {
+		bpf_log(log, "func '%s' size %d must be 8\n",
+			tname, size);
+		return false;
+	}
+
 	/* check for PTR_TO_RDONLY_BUF_OR_NULL or PTR_TO_RDWR_BUF_OR_NULL */
 	for (i = 0; i < prog->aux->ctx_arg_info_size; i++) {
 		const struct bpf_ctx_arg_aux *ctx_arg_info = &prog->aux->ctx_arg_info[i];
@@ -6564,11 +6672,41 @@ bool btf_ctx_access(int off, int size, enum bpf_access_type type,
 	if (prog_args_trusted(prog))
 		info->reg_type |= PTR_TRUSTED;
 
-	/* Raw tracepoint arguments always get marked as maybe NULL */
-	if (bpf_prog_is_raw_tp(prog))
+	if (btf_param_match_suffix(btf, &args[arg], "__nullable"))
 		info->reg_type |= PTR_MAYBE_NULL;
-	else if (btf_param_match_suffix(btf, &args[arg], "__nullable"))
-		info->reg_type |= PTR_MAYBE_NULL;
+
+	if (prog->expected_attach_type == BPF_TRACE_RAW_TP) {
+		struct btf *btf = prog->aux->attach_btf;
+		const struct btf_type *t;
+		const char *tname;
+
+		/* BTF lookups cannot fail, return false on error */
+		t = btf_type_by_id(btf, prog->aux->attach_btf_id);
+		if (!t)
+			return false;
+		tname = btf_name_by_offset(btf, t->name_off);
+		if (!tname)
+			return false;
+		/* Checked by bpf_check_attach_target */
+		tname += sizeof("btf_trace_") - 1;
+		for (i = 0; i < ARRAY_SIZE(raw_tp_null_args); i++) {
+			/* Is this a func with potential NULL args? */
+			if (strcmp(tname, raw_tp_null_args[i].func))
+				continue;
+			if (raw_tp_null_args[i].mask & (0x1ULL << (arg * 4)))
+				info->reg_type |= PTR_MAYBE_NULL;
+			/* Is the current arg IS_ERR? */
+			if (raw_tp_null_args[i].mask & (0x2ULL << (arg * 4)))
+				ptr_err_raw_tp = true;
+			break;
+		}
+		/* If we don't know NULL-ness specification and the tracepoint
+		 * is coming from a loadable module, be conservative and mark
+		 * argument as PTR_MAYBE_NULL.
+		 */
+		if (i == ARRAY_SIZE(raw_tp_null_args) && btf_is_module(btf))
+			info->reg_type |= PTR_MAYBE_NULL;
+	}
 
 	if (tgt_prog) {
 		enum bpf_prog_type tgt_type;
@@ -6614,6 +6752,15 @@ bool btf_ctx_access(int off, int size, enum bpf_access_type type,
 	bpf_log(log, "func '%s' arg%d has btf_id %d type %s '%s'\n",
 		tname, arg, info->btf_id, btf_type_str(t),
 		__btf_name_by_offset(btf, t->name_off));
+
+	/* Perform all checks on the validity of type for this argument, but if
+	 * we know it can be IS_ERR at runtime, scrub pointer type and mark as
+	 * scalar.
+	 */
+	if (ptr_err_raw_tp) {
+		bpf_log(log, "marking pointer arg%d as scalar as it may encode error", arg);
+		info->reg_type = SCALAR_VALUE;
+	}
 	return true;
 }
 EXPORT_SYMBOL_GPL(btf_ctx_access);
@@ -7667,7 +7814,7 @@ static void bpf_btf_show_fdinfo(struct seq_file *m, struct file *filp)
 {
 	const struct btf *btf = filp->private_data;
 
-	seq_printf(m, "btf_id:\t%u\n", btf->id);
+	seq_printf(m, "btf_id:\t%u\n", READ_ONCE(btf->id));
 }
 #endif
 
@@ -7754,7 +7901,7 @@ int btf_get_info_by_fd(const struct btf *btf,
 	if (copy_from_user(&info, uinfo, info_copy))
 		return -EFAULT;
 
-	info.id = btf->id;
+	info.id = READ_ONCE(btf->id);
 	ubtf = u64_to_user_ptr(info.btf);
 	btf_copy = min_t(u32, btf->data_size, info.btf_size);
 	if (copy_to_user(ubtf, btf->data, btf_copy))
@@ -7817,7 +7964,7 @@ int btf_get_fd_by_id(u32 id)
 
 u32 btf_obj_id(const struct btf *btf)
 {
-	return btf->id;
+	return READ_ONCE(btf->id);
 }
 
 bool btf_is_kernel(const struct btf *btf)
@@ -7950,6 +8097,13 @@ static int btf_module_notify(struct notifier_block *nb, unsigned long op,
 			if (btf_mod->module != module)
 				continue;
 
+			/*
+			 * For modules, we do the freeing of BTF IDR as soon as
+			 * module goes away to disable BTF discovery, since the
+			 * btf_try_get_module() on such BTFs will fail. This may
+			 * be called again on btf_put(), but it's ok to do so.
+			 */
+			btf_free_id(btf_mod->btf);
 			list_del(&btf_mod->list);
 			if (btf_mod->sysfs_attr)
 				sysfs_remove_bin_file(btf_kobj, btf_mod->sysfs_attr);
