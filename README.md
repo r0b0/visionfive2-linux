@@ -1,8 +1,12 @@
-# Linux kernel for StarFive's JH7100 RISC-V SoC
-
-## Unofficial fork
+# Unofficial fork for JH7110
 
 This is an unofficial fork with updated 6.12, tested on VisionFive 2 Lite
+
+Original readme from https://github.com/starfive-tech/linux follows:
+
+---
+
+# Linux kernel for StarFive's JH7100 RISC-V SoC
 
 ## What is this?
 
