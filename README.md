@@ -2,6 +2,12 @@
 
 This is an unofficial fork with updated 6.12, tested on VisionFive 2 Lite
 
+See the [releases tab](https://github.com/r0b0/visionfive2-linux/releases) for downloads
+
+Feel free to request changes to the configuration in the [issues tab](https://github.com/r0b0/visionfive2-linux/issues)
+
+Discussion thread on the rvspace forum: https://forum.rvspace.org/t/kernel-6-12-83/5974
+
 Original readme from https://github.com/starfive-tech/linux follows:
 
 ---
