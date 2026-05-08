@@ -8,9 +8,9 @@ Feel free to request changes to the configuration in the [issues tab](https://gi
 
 Discussion thread on the rvspace forum: https://forum.rvspace.org/t/kernel-6-12-83/5974
 
-Original readme from https://github.com/starfive-tech/linux follows:
-
 ---
+
+Original readme from https://github.com/starfive-tech/linux :
 
 # Linux kernel for StarFive's JH7100 RISC-V SoC
 

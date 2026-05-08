@@ -1,5 +1,11 @@
 name: bindeb-pkg
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - "v*-visionfive2"
+  pull_request:
+    branches:
+      - "*stable"
 jobs:
   build:
     runs-on: ubuntu-latest
