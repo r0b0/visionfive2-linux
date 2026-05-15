@@ -1,0 +1,57 @@
+Package: linux-headers-6.12.88-r0b0-2026-05-14
+Source: linux-upstream
+Version: 6.12.88-00180-g0f572a2d786c-14
+Architecture: riscv64
+Maintainer: user <user@starfive.lamac.cc>
+Installed-Size: 48691
+Homepage: https://www.kernel.org/
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-upstream/linux-headers-6.12.88-r0b0-2026-05-14_6.12.88-00180-g0f572a2d786c-14_riscv64.deb
+Size: 8213036
+SHA256: 34558d4c1b89664dfa6a43ffe4ee486baddc14c3fab8a00ec3c72c6cda525382
+SHA1: 72808b210a9b0906e07e3fd9f3df8b1e013a1207
+MD5sum: 42d66f2caf375193f5b000f03a21ca79
+Description: Linux kernel headers for 6.12.88-r0b0-2026-05-14 on riscv64
+ This package provides kernel header files for 6.12.88-r0b0-2026-05-14 on riscv64
+ .
+ This is useful for people who need to build external modules
+
+Package: linux-image-6.12.88-r0b0-2026-05-14
+Source: linux-upstream
+Version: 6.12.88-00180-g0f572a2d786c-14
+Architecture: riscv64
+Maintainer: user <user@starfive.lamac.cc>
+Installed-Size: 42068
+Homepage: https://www.kernel.org/
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-upstream/linux-image-6.12.88-r0b0-2026-05-14_6.12.88-00180-g0f572a2d786c-14_riscv64.deb
+Size: 16818716
+SHA256: 5978bd2396bd6f6136383b7fb1b5077734873f1f02ec2d184d1d8780d5485252
+SHA1: e5820b01f899dfc1472539094055e44375aebea4
+MD5sum: 6db6fbcc79d09ae61e1ec53a52bd3169
+Description: Linux kernel, version 6.12.88-r0b0-2026-05-14
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 6.12.88-r0b0-2026-05-14.
+
+Package: linux-libc-dev
+Source: linux-upstream
+Version: 6.12.88-00180-g0f572a2d786c-14
+Architecture: riscv64
+Maintainer: user <user@starfive.lamac.cc>
+Installed-Size: 7060
+Provides: linux-kernel-headers
+Multi-Arch: same
+Homepage: https://www.kernel.org/
+Priority: optional
+Section: devel
+Filename: pool/main/l/linux-upstream/linux-libc-dev_6.12.88-00180-g0f572a2d786c-14_riscv64.deb
+Size: 1369124
+SHA256: c805456526cc537ac59485cf0d15f650476039ea4f0348d17b0b7f2be49e40a3
+SHA1: 36316a552336b43e5781d35815e019762358121c
+MD5sum: f873122ba81e78eb566325d819d55702
+Description: Linux support headers for userspace development
+ This package provides userspaces headers from the Linux kernel.  These headers
+ are used by the installed headers for GNU glibc and other system libraries.
+

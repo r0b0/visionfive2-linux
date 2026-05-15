@@ -1,0 +1,7 @@
+Origin: Robert T
+Label: visionfive2-linux
+Suite: stable
+Codename: trixie
+Components: main
+Architectures: riscv64
+SignWith: 8970D270917B7A0808F6AE2A1EBC6F94C6DA493E
