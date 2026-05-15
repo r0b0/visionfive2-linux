@@ -36,6 +36,27 @@ Description: Linux kernel headers for 6.12.89-r0b0-2026-05-15 on riscv64
  .
  This is useful for people who need to build external modules
 
+Package: linux-headers-riscv64
+Source: linux
+Version: 6.12.89-00182-g720ba5ad4265-1
+Architecture: all
+Maintainer: Robert T <trebula@gmail.com>
+Installed-Size: 9
+Depends: linux-headers-6.12.89-r0b0-2026-05-15 (= 6.12.89-00182-g720ba5ad4265-1)
+Provides: linux-headers-generic
+Multi-Arch: foreign
+Homepage: https://github.com/r0b0/visionfive2-linux
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux/linux-headers-riscv64_6.12.89-00182-g720ba5ad4265-1_all.deb
+Size: 2560
+SHA256: bc6dba54fa19a9097051167b94b97116236a0b67e5ef12cccbda1323c567e760
+SHA1: b159ea4ab56df442600772b2a907a2b97ec3501a
+MD5sum: 387c8c6b6aa00d2283b5ed279b811ec0
+Description: Header files for Linux riscv64 configuration (meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel riscv64 configuration.
+
 Package: linux-image-6.12.88-r0b0-2026-05-14
 Source: linux-upstream
 Version: 6.12.88-00180-g0f572a2d786c-14
