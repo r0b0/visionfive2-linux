@@ -1,0 +1,6 @@
+Types: deb
+URIs: https://r0b0.github.io/visionfive2-linux
+Suites: trixie
+Components: main
+Signed-By: /etc/apt/trusted.gpg.d/r0b0-visionfive2-linux.pgp
+Architectures: riscv64
