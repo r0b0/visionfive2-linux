@@ -1,0 +1,6 @@
+#!/bin/bash                                                                                                                                                                                                                                     TODAY=$(date --iso-8601)                                                                                                                                                                                                                        # make menuconfig                                                                                                       echo make bindeb-pkg LOCALVERSION=-r0b0-$TODAY -j $(nproc)                                                              make bindeb-pkg LOCALVERSION=-r0b0-$TODAY -j $(nproc)
+
+echo cd ..
+echo ./publish_deb.sh *.deb
+echo cd visionfive2-linux-deb-repo
+
