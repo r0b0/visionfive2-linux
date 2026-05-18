@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - "v*-visionfive2"
+    branches:
+      - '**fix**'
   pull_request:
     branches:
       - "*stable"
@@ -11,20 +13,43 @@ jobs:
     runs-on: ubuntu-latest
     container: debian:trixie
     steps:
+      - name: Install packages
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          dpkg --add-architecture riscv64
+          apt -y update
+          apt -y install libncurses-dev libssl-dev bc flex bison make build-essential crossbuild-essential-riscv64 debhelper-compat cpio kmod libelf-dev rsync libssl-dev:riscv64 git git-lfs
+
       - uses: actions/checkout@v6
+        name: Checkout self
         with:
           path: src
 
-      - name: Install packages and build
+      - uses: actions/checkout@v6
+        name: Checkout soft_3rdpart
+        with:
+          repository: starfive-tech/soft_3rdpart
+          path: soft_3rdpart
+          lfs: true
+
+      - name: Build
         run: |
-          export TODAY=$(date --iso-8601)
-          dpkg --add-architecture riscv64
-          apt -y update
-          apt -y install libncurses-dev libssl-dev bc flex bison make build-essential crossbuild-essential-riscv64 debhelper-compat cpio kmod libelf-dev rsync libssl-dev:riscv64
+          TODAY=$(date --iso-8601)
+          export LOCALVERSION=-r0b0-$TODAY
+          export ARCH=riscv
+          export CROSS_COMPILE=riscv64-linux-gnu-
+          cd soft_3rdpart
+          git apply ../src/.github/workflows/soft_3rdpart-patch-001.patch
+          cd ..
           cd src
           cp config-r0b0 .config
-          make O=$__kobj ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- olddefconfig
-          make O=$__kobj ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- bindeb-pkg LOCALVERSION=-r0b0-$TODAY -j$(nproc)
+          make olddefconfig -j $(nproc)
+          make vmlinux -j $(nproc)
+          make modules -j $(nproc)
+          make M=../soft_3rdpart/wave511/code/vdi/linux/driver -j $(nproc)
+          make M=../soft_3rdpart/codaj12/jdi/linux/driver -j $(nproc)
+          make M=../soft_3rdpart/wave420l/code/vdi/linux/driver -j $(nproc)
+          make bindeb-pkg -j $(nproc)
 
       - uses: actions/upload-artifact@v7
         with:

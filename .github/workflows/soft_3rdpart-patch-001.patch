@@ -1,0 +1,10 @@
+diff --git a/codaj12/jdi/linux/driver/Makefile b/codaj12/jdi/linux/driver/Makefile
+index b31553a..50f04df 100644
+--- a/codaj12/jdi/linux/driver/Makefile
++++ b/codaj12/jdi/linux/driver/Makefile
+@@ -47,3 +47,5 @@ depend .depend dep:
+ ifeq (.depend,$(wildcard .depend))
+ include	.depend
+ endif
++
++KBUILD_CFLAGS_MODULE += -DMODULE
