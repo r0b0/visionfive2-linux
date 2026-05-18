@@ -33,6 +33,14 @@ install_linux_image () {
 		${MAKE} -f ${srctree}/Makefile INSTALL_DTBS_PATH="${pdir}/usr/lib/linux-image-${KERNELRELEASE}" dtbs_install
 	fi
 
+	# JH7110 extra modules
+	extradir="${pdir}/lib/modules/${KERNELRELEASE}/extra"
+	rm -rf "${extradir}"
+	mkdir -p "${extradir}"
+	cp "${srctree}/../soft_3rdpart/wave511/code/vdi/linux/driver/vdec.ko" "${extradir}"
+	cp "${srctree}/../soft_3rdpart/codaj12/jdi/linux/driver/jpu.ko" "${extradir}"
+	cp "${srctree}/../soft_3rdpart/wave420l/code/vdi/linux/driver/venc.ko" "${extradir}"
+
 	${MAKE} -f ${srctree}/Makefile INSTALL_MOD_PATH="${pdir}" INSTALL_MOD_STRIP=1 modules_install
 	rm -f "${pdir}/lib/modules/${KERNELRELEASE}/build"
 

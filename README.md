@@ -8,6 +8,8 @@ Feel free to request changes to the configuration in the [issues tab](https://gi
 
 Discussion thread on the rvspace forum: https://forum.rvspace.org/t/kernel-6-12-83/5974
 
+To build this, you also need to clone the VisionFive 2 [soft\_3rdpart repository](https://github.com/starfive-tech/soft_3rdpart)
+
 ---
 
 Original readme from https://github.com/starfive-tech/linux :
