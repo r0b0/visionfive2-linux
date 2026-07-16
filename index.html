@@ -21,22 +21,22 @@
 			</p>
 			<p>See the <a href="https://github.com/r0b0/visionfive2-linux">project page</a> for details</p>
 
-			<article class="pico-background-lime-50"><b>Current version:</b> 6.12.94</article>
+			<article class="pico-background-lime-50"><b>Current version:</b> 6.12.95</article>
 
 			<article class="pico-background-pumpkin-150"><b>Warning:</b> Do not use with Ubuntu</article>
 			
 			<h1>Usage</h1>
 			<h2>Import the signing key</h2>
 			<pre>
-curl https://r0b0.github.io/visionfive2-linux/pubkey.gpg | sudo gpg -o /etc/apt/trusted.gpg.d/r0b0-visionfive2-linux.pgp --dearmor
+curl -fsSL https://r0b0.github.io/visionfive2-linux/pubkey.gpg | sudo gpg -o /etc/apt/trusted.gpg.d/r0b0-visionfive2-linux.pgp --dearmor
 			</pre>
 			<h2>Setup the repository</h2>
 			<pre>
-sudo curl https://r0b0.github.io/visionfive2-linux/r0b0-visionfive2-linux.sources -o /etc/apt/sources.list.d/r0b0-visionfive2-linux.sources
+curl -fsSL https://r0b0.github.io/visionfive2-linux/r0b0-visionfive2-linux.sources | sudo tee /etc/apt/sources.list.d/r0b0-visionfive2-linux.sources
 			</pre>
 			<h2>Pin the repository</h2>
 			<pre>
-sudo curl https://r0b0.github.io/visionfive2-linux/r0b0-visionfive2-linux.pref -o /etc/apt/preferences.d/r0b0-visionfive2-linux.pref
+curl -fsSL https://r0b0.github.io/visionfive2-linux/r0b0-visionfive2-linux.pref | sudo tee /etc/apt/preferences.d/r0b0-visionfive2-linux.pref
 			</pre>
 			<h2>Update and use</h2>
 			<pre>
