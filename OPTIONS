@@ -2,18 +2,20 @@
 
 set -e
 
-TODAY=$(date --iso-8601)
+# TODAY=$(date --iso-8601)
+# MAKEOPTS="LOCALVERSION=-r0b0-$TODAY -j $(nproc)"
+MAKEOPTS="LOCALVERSION=-r0b0 -j $(nproc)"
+
+make olddefconfig $MAKEOPTS
+make vmlinux $MAKEOPTS
+make modules $MAKEOPTS
 
 # external modules
-make M=../soft_3rdpart/wave511/code/vdi/linux/driver LOCALVERSION=-r0b0-$TODAY -j $(nproc)
-ls ../soft_3rdpart/wave511/code/vdi/linux/driver/vdec.ko
-make M=../soft_3rdpart/codaj12/jdi/linux/driver LOCALVERSION=-r0b0-$TODAY -j $(nproc)
-ls ../soft_3rdpart/codaj12/jdi/linux/driver/jpu.ko
-make M=../soft_3rdpart/wave420l/code/vdi/linux/driver LOCALVERSION=-r0b0-$TODAY -j $(nproc)
-ls ../soft_3rdpart/wave420l/code/vdi/linux/driver/venc.ko
+make M=../soft_3rdpart/wave511/code/vdi/linux/driver $MAKEOPTS
+make M=../soft_3rdpart/codaj12/jdi/linux/driver $MAKEOPTS
+make M=../soft_3rdpart/wave420l/code/vdi/linux/driver $MAKEOPTS
 
-# echo make bindeb-pkg LOCALVERSION=-r0b0-$TODAY -j $(nproc)
-make bindeb-pkg LOCALVERSION=-r0b0-$TODAY -j $(nproc)
+make bindeb-pkg $MAKEOPTS
 
 echo cd ..
 echo ./publish_deb.sh *.deb

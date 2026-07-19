@@ -1,6 +1,6 @@
 # Unofficial fork for JH7110
 
-This is an unofficial fork with updated 6.12, tested on VisionFive 2 Lite
+This is an unofficial fork of the [StarFive JH7110 kernel](https://github.com/starfive-tech/linux) updated to the newest [stable 6.12.y release](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-6.12.y) tested on VisionFive 2 Lite
 
 See the [deb repo site](https://r0b0.github.io/visionfive2-linux/) to install on your Debian system
 
