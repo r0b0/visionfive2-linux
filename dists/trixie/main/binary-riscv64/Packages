@@ -55,23 +55,42 @@ Description: Linux kernel headers for 6.12.95-r0b0-2026-07-16 on riscv64
  .
  This is useful for people who need to build external modules
 
+Package: linux-headers-6.12.96-r0b0-2026-07-18
+Source: linux-upstream
+Version: 6.12.96-00193-g4dc155eb321c-18
+Architecture: riscv64
+Maintainer: user <user@starfive.lamac.cc>
+Installed-Size: 48726
+Homepage: https://www.kernel.org/
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-upstream/linux-headers-6.12.96-r0b0-2026-07-18_6.12.96-00193-g4dc155eb321c-18_riscv64.deb
+Size: 8218232
+SHA256: a6adf072410868c44f61695fa5198ed1d9790f38a05d02c0e78ff021e598310c
+SHA1: 45bdfb039f0db59aa24033c33fc72d712b483250
+MD5sum: 4cceac311780efe6fe902fb37c8818cb
+Description: Linux kernel headers for 6.12.96-r0b0-2026-07-18 on riscv64
+ This package provides kernel header files for 6.12.96-r0b0-2026-07-18 on riscv64
+ .
+ This is useful for people who need to build external modules
+
 Package: linux-headers-riscv64
 Source: linux
-Version: 6.12.95-00192-gcb864160c94c-16
+Version: 6.12.96-00193-g4dc155eb321c-18
 Architecture: all
 Maintainer: Robert T <trebula@gmail.com>
 Installed-Size: 9
-Depends: linux-headers-6.12.95-r0b0-2026-07-16 (= 6.12.95-00192-gcb864160c94c-16)
+Depends: linux-headers-6.12.96-r0b0-2026-07-18 (= 6.12.96-00193-g4dc155eb321c-18)
 Provides: linux-headers-generic
 Multi-Arch: foreign
 Homepage: https://github.com/r0b0/visionfive2-linux
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux/linux-headers-riscv64_6.12.95-00192-gcb864160c94c-16_all.deb
-Size: 2556
-SHA256: 6220582a571f200c518c84dbe8c59d32452c5f28a56b31a3d429bf808aff799e
-SHA1: 584c526bc9edbbf2d15670e62a9a2e855f74959f
-MD5sum: 71452092bbcd555f4035ddb2c4b4a309
+Filename: pool/main/l/linux/linux-headers-riscv64_6.12.96-00193-g4dc155eb321c-18_all.deb
+Size: 2560
+SHA256: 3e54deed434990c6bef08fb758de3a4ab2c8417f6b4fa7e0c8c0d8acefa28038
+SHA1: e1d89f7687a8ad113e2e6a69fc024b5cb20c31dc
+MD5sum: e1595241cc2f40faa5d20bb434e524e7
 Description: Header files for Linux riscv64 configuration (meta-package)
  This package depends on the architecture-specific header files for the
  latest Linux kernel riscv64 configuration.
@@ -130,29 +149,47 @@ Description: Linux kernel, version 6.12.95-r0b0-2026-07-16
  This package contains the Linux kernel, modules and corresponding other
  files, version: 6.12.95-r0b0-2026-07-16.
 
+Package: linux-image-6.12.96-r0b0-2026-07-18
+Source: linux-upstream
+Version: 6.12.96-00193-g4dc155eb321c-18
+Architecture: riscv64
+Maintainer: user <user@starfive.lamac.cc>
+Installed-Size: 42234
+Homepage: https://www.kernel.org/
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-upstream/linux-image-6.12.96-r0b0-2026-07-18_6.12.96-00193-g4dc155eb321c-18_riscv64.deb
+Size: 16854264
+SHA256: 0f5e02130b3504ae4c571077ac4a92c2dbb8db578798d4ce2a7e5e2918f3f4df
+SHA1: c3ea246894150a3c5d1ba941d5c4088bdbaa8631
+MD5sum: be1ec6720eddbb76366ed9f37120943a
+Description: Linux kernel, version 6.12.96-r0b0-2026-07-18
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 6.12.96-r0b0-2026-07-18.
+
 Package: linux-image-riscv64
-Version: 6.12.95-00192-gcb864160c94c-16
+Version: 6.12.96-00193-g4dc155eb321c-18
 Architecture: riscv64
 Maintainer: Robert T <trebula@gmail.com>
 Installed-Size: 9
-Depends: linux-image-6.12.95-r0b0-2026-07-16 (= 6.12.95-00192-gcb864160c94c-16)
-Provides: linux-image-generic, linux-latest-modules-6.12.95-00192-gcb864160c94c-16, wireguard-modules (= 1.0.0)
+Depends: linux-image-6.12.96-r0b0-2026-07-18 (= 6.12.96-00193-g4dc155eb321c-18)
+Provides: linux-image-generic, linux-latest-modules-6.12.96-00193-g4dc155eb321c-18, wireguard-modules (= 1.0.0)
 Multi-Arch: foreign
 Homepage: https://github.com/r0b0/visionfive2-linux
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux-image-riscv64/linux-image-riscv64_6.12.95-00192-gcb864160c94c-16_riscv64.deb
-Size: 2608
-SHA256: 10c371a5d1a64ba14502ea39840fffc79ec15fb1282fcca740479335ab2fe6b3
-SHA1: 3876741a5a6577e3ecbe9b1b0b1a275550d6202e
-MD5sum: ab632ba9651ae27bab95da03ceaab8e9
+Filename: pool/main/l/linux-image-riscv64/linux-image-riscv64_6.12.96-00193-g4dc155eb321c-18_riscv64.deb
+Size: 2616
+SHA256: b18b567ff60bc473f36677c6cbaaa3f5746231771386a32bb60a693fd7602a25
+SHA1: 98ecf3200b03af481a495280a92f529e5d02b88c
+MD5sum: 8735ff4a9e1d212a1b48360d5ffe6fc7
 Description: Linux for 64-bit RISC-V platforms (meta-package)
  This package depends on the latest Linux kernel and modules for use on
  64-bit RISC-V platforms.
 
 Package: linux-libc-dev
 Source: linux-upstream
-Version: 6.12.95-00192-gcb864160c94c-16
+Version: 6.12.96-00193-g4dc155eb321c-18
 Architecture: riscv64
 Maintainer: user <user@starfive.lamac.cc>
 Installed-Size: 7060
@@ -161,11 +198,11 @@ Multi-Arch: same
 Homepage: https://www.kernel.org/
 Priority: optional
 Section: devel
-Filename: pool/main/l/linux-upstream/linux-libc-dev_6.12.95-00192-gcb864160c94c-16_riscv64.deb
-Size: 1369172
-SHA256: cbe241bf906283d91e2a1c3963baeac12fe34940d49107a8c105e0508a3d5d79
-SHA1: 9717025008a86840b7117d42d8c86b875ca84b6f
-MD5sum: 10935b2ccbbd3ec1b208896896bfe5b6
+Filename: pool/main/l/linux-upstream/linux-libc-dev_6.12.96-00193-g4dc155eb321c-18_riscv64.deb
+Size: 1369132
+SHA256: b541b5eabf84a5fd3882258cbf37d0721ff1b2b6964cbfb6823a1ad643d48656
+SHA1: 0ec27d52bef6d7527ca56f09b22c4fd2e124abd9
+MD5sum: 768130df7acbeac459d6ec612a78e703
 Description: Linux support headers for userspace development
  This package provides userspaces headers from the Linux kernel.  These headers
  are used by the installed headers for GNU glibc and other system libraries.
