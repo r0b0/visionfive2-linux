@@ -5,25 +5,25 @@ Origin: Robert T
 Label: visionfive2-linux
 Suite: stable
 Codename: trixie
-Date: Fri, 31 Jul 2026 09:34:15 UTC
+Date: Tue, 04 Aug 2026 08:57:53 UTC
 Architectures: riscv64
 Components: main
 MD5Sum:
- 29e6c566700d30e9276bcdd3dfb64cf4 7541 main/binary-riscv64/Packages
- 1a415168a0c4eb7309faf5e46e7abf04 2004 main/binary-riscv64/Packages.gz
+ 500d0c92a37d987db85c77f56dd4e55d 6774 main/binary-riscv64/Packages
+ 759e9b33743cd5df5fb9fec27079c1d5 1857 main/binary-riscv64/Packages.gz
  d6a85bdd87debe11f5c42fd11a9319e8 96 main/binary-riscv64/Release
 SHA1:
- 708358f45a9bae1d974c3fc1524ad618fbd76cc8 7541 main/binary-riscv64/Packages
- 11288bb6e8f9e377fe82cba50855b784898e9335 2004 main/binary-riscv64/Packages.gz
+ 3f4a4f541bf21f7acec5652719b5dcbae8ffece9 6774 main/binary-riscv64/Packages
+ abd2d40755b1a0386771c3cedbe3eb591daa6acb 1857 main/binary-riscv64/Packages.gz
  28306077d26150cad62a53b0f272dc12b2b42554 96 main/binary-riscv64/Release
 SHA256:
- 6e0885285accdddcdc201b36632dbb01a118b121797e28193ccc1ea4cb14a350 7541 main/binary-riscv64/Packages
- ab11d9c9a82bfaa6e19669d3a7f0bb506a7b0551efe383896a2dc6c46ee668ab 2004 main/binary-riscv64/Packages.gz
+ 638d0c243156ebbec0408247f2dff2c14a5876f0d77fd7ac6b2029e693491484 6774 main/binary-riscv64/Packages
+ dfaaae1ee525238a04967f8555c37cc6cd86ae91691d2a030c619b64afe0cf0b 1857 main/binary-riscv64/Packages.gz
  20e4ed5ba0298a957d958d805f012a0f914cd964e559a26df5a227cdf62668ab 96 main/binary-riscv64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQSJcNJwkXt6CAj2rioevG+UxtpJPgUCamxsFwAKCRAevG+UxtpJ
-Pp/+AQDnV6RB6p4nivoG8Q3LEpNMWcHfbNqqP8J5FdXl24ksgAEArCjCp4HTdYWh
-tdCxj4boSoh+7iHz5fwsDuc+RqCtDwo=
-=PONZ
+iHUEARYKAB0WIQSJcNJwkXt6CAj2rioevG+UxtpJPgUCanGpkQAKCRAevG+UxtpJ
+Ppk2AP9/1q4VOfasbvNox/R1trZpuL2PJqRCnknex1EG4FUY/gD/YwW1NnSjMk0r
+XgVrqIpjNVVIjX5ISHSqZUKLqZqOCgU=
+=OY32
 -----END PGP SIGNATURE-----
