@@ -1,22 +1,3 @@
-Package: linux-headers-6.12.115-r0b0
-Source: linux-upstream
-Version: 6.12.115-00218-g3a7ebccf717c-58
-Architecture: riscv64
-Maintainer: user <Robert T <trebula@gmail.com>>
-Installed-Size: 48829
-Homepage: https://www.kernel.org/
-Priority: optional
-Section: kernel
-Filename: pool/main/l/linux-upstream/linux-headers-6.12.115-r0b0_6.12.115-00218-g3a7ebccf717c-58_riscv64.deb
-Size: 8234084
-SHA256: f8f8b3aac4d2ad96c895569a707e5668c5ddbe7aae2f0b2c16f9dfed85410da2
-SHA1: 4ad6b54819abf958da200e0aefc6dbce87377491
-MD5sum: 217124e0cb7c99f600df43fe2a3b8510
-Description: Linux kernel headers for 6.12.115-r0b0 on riscv64
- This package provides kernel header files for 6.12.115-r0b0 on riscv64
- .
- This is useful for people who need to build external modules
-
 Package: linux-headers-6.12.116-r0b0
 Source: linux-upstream
 Version: 6.12.116-00219-g2391fb32fc83-60
@@ -55,44 +36,45 @@ Description: Linux kernel headers for 6.12.117-r0b0 on riscv64
  .
  This is useful for people who need to build external modules
 
+Package: linux-headers-6.12.118-r0b0
+Source: linux-upstream
+Version: 6.12.118-00221-g9ccdf44ed08b-64
+Architecture: riscv64
+Maintainer: user <Robert T <trebula@gmail.com>>
+Installed-Size: 48838
+Homepage: https://www.kernel.org/
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-upstream/linux-headers-6.12.118-r0b0_6.12.118-00221-g9ccdf44ed08b-64_riscv64.deb
+Size: 8235644
+SHA256: 2b2a7c7cab6983e590ea24b2d6cce025114d89f969e98bdc1c27bfea02ff89aa
+SHA1: 1ede97a6a459b95653e8325b5c02a71ca71769b9
+MD5sum: b2a7aa429c18ae0a14f4f440fad4f703
+Description: Linux kernel headers for 6.12.118-r0b0 on riscv64
+ This package provides kernel header files for 6.12.118-r0b0 on riscv64
+ .
+ This is useful for people who need to build external modules
+
 Package: linux-headers-riscv64
 Source: linux
-Version: 6.12.117-g2391fb32fc83-62
+Version: 6.12.118-00221-g9ccdf44ed08b-64
 Architecture: all
 Maintainer: Robert T <trebula@gmail.com>
 Installed-Size: 9
-Depends: linux-headers-6.12.117-r0b0 (= 6.12.117-g2391fb32fc83-62)
+Depends: linux-headers-6.12.118-r0b0 (= 6.12.118-00221-g9ccdf44ed08b-64)
 Provides: linux-headers-generic
 Multi-Arch: foreign
 Homepage: https://github.com/r0b0/visionfive2-linux
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux/linux-headers-riscv64_6.12.117-g2391fb32fc83-62_all.deb
-Size: 2532
-SHA256: 16a7470d6b4b84b0af4b427e359225d2e6fe0087d04d1c40f0d0c6c9ecd830e2
-SHA1: 1f22d0b2b1abe134ae1393b29ef872df596239fd
-MD5sum: b056aecab6ed60e4085fa8ad514d87db
+Filename: pool/main/l/linux/linux-headers-riscv64_6.12.118-00221-g9ccdf44ed08b-64_all.deb
+Size: 2552
+SHA256: 6a75481a240b512ac2b991a2939cf3b06209b957940bcb09951bc1dd59ba00b8
+SHA1: 474290f473e2474a0b98957d44caadec449aad60
+MD5sum: a6ef3b65a81caae0103a66eb410bdc10
 Description: Header files for Linux riscv64 configuration (meta-package)
  This package depends on the architecture-specific header files for the
  latest Linux kernel riscv64 configuration.
-
-Package: linux-image-6.12.115-r0b0
-Source: linux-upstream
-Version: 6.12.115-00218-g3a7ebccf717c-58
-Architecture: riscv64
-Maintainer: user <Robert T <trebula@gmail.com>>
-Installed-Size: 42051
-Homepage: https://www.kernel.org/
-Priority: optional
-Section: kernel
-Filename: pool/main/l/linux-upstream/linux-image-6.12.115-r0b0_6.12.115-00218-g3a7ebccf717c-58_riscv64.deb
-Size: 16999672
-SHA256: 7aae2fb2d6ffa4abf3f57f18e970393ebd56df1a4b3f3c1e02c2b62c5d2894a9
-SHA1: 8d2261704036393d4a168bc666761b96c5caf84f
-MD5sum: 623bba4453ac1da1af97da87633cf745
-Description: Linux kernel, version 6.12.115-r0b0
- This package contains the Linux kernel, modules and corresponding other
- files, version: 6.12.115-r0b0.
 
 Package: linux-image-6.12.116-r0b0
 Source: linux-upstream
@@ -130,29 +112,47 @@ Description: Linux kernel, version 6.12.117-r0b0
  This package contains the Linux kernel, modules and corresponding other
  files, version: 6.12.117-r0b0.
 
+Package: linux-image-6.12.118-r0b0
+Source: linux-upstream
+Version: 6.12.118-00221-g9ccdf44ed08b-64
+Architecture: riscv64
+Maintainer: user <Robert T <trebula@gmail.com>>
+Installed-Size: 42094
+Homepage: https://www.kernel.org/
+Priority: optional
+Section: kernel
+Filename: pool/main/l/linux-upstream/linux-image-6.12.118-r0b0_6.12.118-00221-g9ccdf44ed08b-64_riscv64.deb
+Size: 17016000
+SHA256: b0c3e24befb14831aaac4b8a25e71b9300470ad00afe03346bef5bca6d70c617
+SHA1: 97638b745707afd688f59fb1a6e805f5582867bc
+MD5sum: 4c06570d941f8f9012319f489c993ae9
+Description: Linux kernel, version 6.12.118-r0b0
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 6.12.118-r0b0.
+
 Package: linux-image-riscv64
-Version: 6.12.117-g2391fb32fc83-62
+Version: 6.12.118-00221-g9ccdf44ed08b-64
 Architecture: riscv64
 Maintainer: Robert T <trebula@gmail.com>
 Installed-Size: 9
-Depends: linux-image-6.12.117-r0b0 (= 6.12.117-g2391fb32fc83-62)
-Provides: linux-image-generic, linux-latest-modules-6.12.117-g2391fb32fc83-62, wireguard-modules (= 1.0.0)
+Depends: linux-image-6.12.118-r0b0 (= 6.12.118-00221-g9ccdf44ed08b-64)
+Provides: linux-image-generic, linux-latest-modules-6.12.118-00221-g9ccdf44ed08b-64, wireguard-modules (= 1.0.0)
 Multi-Arch: foreign
 Homepage: https://github.com/r0b0/visionfive2-linux
 Priority: optional
 Section: kernel
-Filename: pool/main/l/linux-image-riscv64/linux-image-riscv64_6.12.117-g2391fb32fc83-62_riscv64.deb
-Size: 2584
-SHA256: 323e7b620052faa084edfd896ccfd057692165d0318694dfa13390e392fe06d2
-SHA1: 5c48a74c59896e53b4c90e9a850119ecff655671
-MD5sum: d756318b8afc42133c1293f82a973e7d
+Filename: pool/main/l/linux-image-riscv64/linux-image-riscv64_6.12.118-00221-g9ccdf44ed08b-64_riscv64.deb
+Size: 2596
+SHA256: 7a8ad5938950a2eacec424c03a5bf663f2e31dda2095b4f88f264bd51622706b
+SHA1: 72c4788c371949ecacd6240f43b7cd5ebffb6c8b
+MD5sum: 94613c737b19c8ce0f4224e3a11a96dc
 Description: Linux for 64-bit RISC-V platforms (meta-package)
  This package depends on the latest Linux kernel and modules for use on
  64-bit RISC-V platforms.
 
 Package: linux-libc-dev
 Source: linux-upstream
-Version: 6.12.117-g2391fb32fc83-62
+Version: 6.12.118-00221-g9ccdf44ed08b-64
 Architecture: riscv64
 Maintainer: user <Robert T <trebula@gmail.com>>
 Installed-Size: 7062
@@ -161,11 +161,11 @@ Multi-Arch: same
 Homepage: https://www.kernel.org/
 Priority: optional
 Section: devel
-Filename: pool/main/l/linux-upstream/linux-libc-dev_6.12.117-g2391fb32fc83-62_riscv64.deb
-Size: 1369512
-SHA256: 6a560e74d7fa99d998c9f79f56fa6d2977a6742b4a4c8dffc02164c4a8e04bc9
-SHA1: 7148d99c99d1bf8d0c87b63878d4940f4ee5eb11
-MD5sum: 7b212bd950df1831dc8190acaa8053ca
+Filename: pool/main/l/linux-upstream/linux-libc-dev_6.12.118-00221-g9ccdf44ed08b-64_riscv64.deb
+Size: 1369696
+SHA256: 38def72f9f0dd7d039842babbab98875908951339b5e3250fb03b29a67c86c39
+SHA1: 32f8665839e4121f893f0838efb7d95bf0130847
+MD5sum: c4963933e0ad8f62b17fe9ad7e725f50
 Description: Linux support headers for userspace development
  This package provides userspaces headers from the Linux kernel.  These headers
  are used by the installed headers for GNU glibc and other system libraries.
